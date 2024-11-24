@@ -1,0 +1,35 @@
+<body>
+  <mat-card>
+    <b><span>Daschboard</span></b>
+  </mat-card>
+  <br>
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="titel">Total famille:</h2>
+          <h1 class="titel">{{data?.famille}}</h1>
+          <p><button class="button" [routerLink]="['/onee/category']">A propos de Famille</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="titel">Total Material:</h2>
+          <h1 class="titel">{{data?.material}}</h1>
+          <p><button class="button" [routerLink]="['/onee/product']">A propos de Material</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="titel">Total Decharge:</h2>
+          <h1 class="titel">{{data?.ticket}}</h1>
+          <p><button class="button" [routerLink]="['/onee/bill']">A propos de Decharge</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

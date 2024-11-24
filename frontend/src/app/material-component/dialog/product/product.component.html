@@ -1,0 +1,74 @@
+<mat-toolbar color="primary">
+<mat-toolbar-row fxLayout="row">
+  <span class="title-center">{{dialogData.action}} Material</span>
+
+</mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="productForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngIf="productForm.controls.name.touched && productForm.controls.name.invalid">
+            <span *ngIf="productForm.controls.name.errors?.required">This field is mandatory.</span>
+            <span *ngIf="productForm.controls.name.errors?.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Numeros De serie</mat-label>
+          <input matInput formControlName="N_serie" required>
+          <mat-error *ngIf="productForm.controls.N_serie.touched && productForm.controls.N_serie.invalid">
+            <span *ngIf="productForm.controls.N_serie.errors?.required">This field is mandatory.</span>
+            <span *ngIf="productForm.controls.N_serie.errors?.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Famille</mat-label>
+          <mat-select formControlName="familleId">
+            <mat-option *ngFor="let category of categorys" [value]="category.id">{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Code ONEE</mat-label>
+          <input matInput formControlName="Code_onee" required>
+          <mat-error *ngIf="productForm.controls.Code_onee.touched && productForm.controls.Code_onee.invalid">
+            <span *ngIf="productForm.controls.Code_onee.errors?.required">This field is mandatory.</span>
+            <span *ngIf="productForm.controls.Code_onee.errors?.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Mark</mat-label>
+          <input matInput formControlName="Mark" required>
+          <mat-error *ngIf="productForm.controls.Mark.touched && productForm.controls.Mark.invalid">
+            <span *ngIf="productForm.controls.Mark.errors?.required">This field is mandatory.</span>
+            <span *ngIf="productForm.controls.Mark.errors?.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>activite</mat-label>
+          <input matInput formControlName="activite" required>
+          <mat-error *ngIf="productForm.controls.activite.touched && productForm.controls.activite.invalid">
+            <span *ngIf="productForm.controls.activite.errors?.required">This field is mandatory.</span>
+            <span *ngIf="productForm.controls.activite.errors?.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+    [disabled]="!(productForm!.valid && productForm.dirty)">{{action}}</button>
+  <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

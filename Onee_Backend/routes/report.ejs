@@ -1,0 +1,51 @@
+<html>
+    <head>
+         <style>
+            table{
+                font-family: arial,sans-serif;
+                border-collapse:collapse;
+                width: 100%;
+            }
+            td,th{
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+         </style>
+    </head>
+    <body>
+        <h3 style="text-align:center;">ONEE Decharge</h3>
+        <table>
+            <tr>
+                <th>Nom & Prenom :<%= Nom_et_prenom %></th>
+                <th>Matricule Affectaire :<%= matricule %></th>
+            </tr>
+            <tr>
+                <th>Adresse Du Site :<%= Adresse_du_site %></th>
+                <th>Entite :<%= entite %></th>
+            </tr>
+        </table>
+        <h3>Material Details:</h3>
+        <table>
+            <tr>
+                <th>Material</th>
+                
+                <th>Code ONEE</th>
+                
+                <th>Numeros De Serie</th>
+            </tr>
+            <% if(materialDetails.length >0) { %>
+                <% materialDetails.forEach(material =>{ %>
+                    <tr>
+                        <td><%= material.name %></td>
+                        
+                        <td><%= material.Code_onee %></td>
+                        
+                        <td><%= material.N_serie %></td>
+                    </tr>
+                    <%});%>
+                    <%}%>
+        </table>
+        <h3>Thank you for visting.please visit again!!</h3>
+    </body>
+</html>

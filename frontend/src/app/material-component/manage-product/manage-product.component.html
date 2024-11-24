@@ -1,0 +1,55 @@
+<mat-card>
+  <b><span>Manage Material</span></b>
+  <button mat-flat-button color="primary"class="float-right" (click)="handleAddAction()">Ajouter Material</button>
+</mat-card>
+<hr>
+<mat-card>
+  <mat-form-field appearance="fill">
+    <mat-label>chercher</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+</mat-card>
+<hr>
+<div class="responsive_table">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nom</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="familleName">
+      <th mat-header-cell *matHeaderCellDef>Famille</th>
+      <td mat-cell *matCellDef="let element" >{{element.familleName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="N_serie">
+      <th mat-header-cell *matHeaderCellDef>Numero de Serie</th>
+      <td mat-cell *matCellDef="let element">{{element.N_serie}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Code_onee">
+      <th mat-header-cell *matHeaderCellDef>Code ONEE</th>
+      <td mat-cell *matCellDef="let element">{{element.Code_onee}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Mark">
+      <th mat-header-cell *matHeaderCellDef>Mark</th>
+      <td mat-cell *matCellDef="let element">{{element.Mark}}</td>
+    </ng-container>
+    <ng-container matColumnDef="activite">
+      <th mat-header-cell *matHeaderCellDef>Activite</th>
+      <td mat-cell *matCellDef="let element">{{element.activite}}</td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element" class="action-link">
+        <button mat-icon-button color="primary" matTooltip="Modifier" (click)="handleEditAction(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" matTooltip="Suprimer" (click)="handleDeleteAction(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <mat-slide-toggle (change)="onChange($event.checked,element.id)" matTooltip="Activer ou Desactiver Material" [checked]="element.status" ></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns; sticky:true"></tr>
+    <tr mat-row *matRowDef="let row; columns:displayColumns"></tr>
+  </table>
+</div>

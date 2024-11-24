@@ -1,0 +1,49 @@
+<mat-card>
+  <b><span>Décharge</span></b>
+</mat-card>
+<hr>
+<mat-card>
+  <mat-form-field appearance="fill">
+    <mat-label>Chercher</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+</mat-card>
+<hr>
+<div class="responsive_table">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="Nom_et_prenom">
+      <th mat-header-cell *matHeaderCellDef>Nom & Prenom</th>
+      <td mat-cell *matCellDef="let element">{{element.Nom_et_prenom}}</td>
+    </ng-container>
+    <ng-container matColumnDef="matricule">
+      <th mat-header-cell *matHeaderCellDef>Matricule</th>
+      <td mat-cell *matCellDef="let element">{{element.matricule}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Adresse_du_site">
+      <th mat-header-cell *matHeaderCellDef>Adresse Du Site</th>
+      <td mat-cell *matCellDef="let element">{{element.Adresse_du_site}}</td>
+    </ng-container>
+    <ng-container matColumnDef="entite">
+      <th mat-header-cell *matHeaderCellDef>Entité</th>
+      <td mat-cell *matCellDef="let element">{{element.entite}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element" class="action-link">
+        <button mat-icon-button color="primary" matTooltip="A propos" (click)="handleViewAction(element)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" matTooltip="Telecharger Decharge" (click)="downloadReportAction(element)">
+          <mat-icon>summarize</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" matTooltip="supprimer" (click)="handleDeleteAction(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+

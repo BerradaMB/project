@@ -1,0 +1,126 @@
+<mat-card>
+  <b><span>Manage Decharge</span></b>
+  <button mat-flat-button color="primary" class="float-right" (click)="submitAction()">Confirmer et prendre Decharge</button>
+</mat-card>
+<hr>
+
+<mat-card>
+  <b><span>Utilisateur Details</span></b>
+  <form [formGroup]="manageOrderForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <!-- Form fields for user details -->
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Nom & Prenom</mat-label>
+          <input matInput formControlName="Nom_et_prenom" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Matricule</mat-label>
+          <input matInput formControlName="matricule" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Adresse Du Site</mat-label>
+          <input matInput formControlName="Adresse_du_site" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Entite</mat-label>
+          <input matInput formControlName="entite" required>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-card>
+<hr>
+
+<mat-card>
+  <b><span>Choix Du Matériel</span></b>
+  <form [formGroup]="manageOrderForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <!-- Category Selection -->
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Famille</mat-label>
+          <mat-select formControlName="category" (selectionChange)="getProductsBycategory($event.value)">
+            <mat-option *ngFor="let category of categorys" [value]="category">{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Product Selection -->
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Material</mat-label>
+          <mat-select formControlName="product" (selectionChange)="getProductDetails($event.value)">
+            <mat-option *ngFor="let product of products" [value]="product">{{product.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- N_serie Selection -->
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>N_serie</mat-label>
+          <mat-select formControlName="N_serie">
+            <mat-option *ngFor="let serial of filteredSerialNumbers" [value]="serial.id">{{serial.N_serie}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Code_onee Selection -->
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Code_onee</mat-label>
+          <mat-select formControlName="Code_onee">
+            <mat-option *ngFor="let code of filteredCodeOnee" [value]="code.id">{{code.Code_onee}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <!-- Add Button -->
+  <button mat-flat-button color="primary" (click)="add()">Ajouter</button>
+</mat-card>
+<hr>
+
+<!-- Display the Added Items -->
+<div class="responsive_table">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Material</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <!-- Famille Column -->
+
+
+    <!-- Code_onee Column -->
+    <ng-container matColumnDef="Code_onee">
+      <th mat-header-cell *matHeaderCellDef>Code_onee</th>
+      <td mat-cell *matCellDef="let element">{{element.Code_onee}}</td>
+    </ng-container>
+
+    <!-- N_serie Column -->
+    <ng-container matColumnDef="N_serie">
+      <th mat-header-cell *matHeaderCellDef>N_serie</th>
+      <td mat-cell *matCellDef="let element">{{element.N_serie}}</td>
+    </ng-container>
+
+    <!-- Delete Button -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element; let i = index" class="action-link">
+        <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(i, element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+
+
+
+
